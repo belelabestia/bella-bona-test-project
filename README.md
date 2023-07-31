@@ -141,3 +141,5 @@ This view should list all the _orders_ made by a _customer_.
 
 I'm assuming that the goal of this view is not to list the _products_ of each of the listed _orders_ but rather to see the date and status,
 and to be able to update the status.
+
+**Path**: `/customer/:id/orders`

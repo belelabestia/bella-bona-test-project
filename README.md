@@ -30,6 +30,8 @@ A _customer_ makes _orders_ of _products_.
 
 ### Product
 
+**This entity won't be mapped in the project.**
+
 I'm assuming there's a _product catalogue_ from where the _customer_ can pick the _products_ to order;  
 therefore a _product_ can be added to more than one _order_.
 
@@ -56,7 +58,7 @@ From what I'm seeing in the `data.json`, there _must_ be a _many to many_ relati
 - Id: number
 - Name: string
 - Quantity: number
-- ProductId: number
+- ProductId: number - this represents the SKU
 - OrderId: number
 - (OrderDate: date - if I understood the spec, this is redundant with the actual _order date_)
 - Status: `processing` | `done`

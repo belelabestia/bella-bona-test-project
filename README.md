@@ -41,6 +41,7 @@ therefore a _product_ can be added to more than one _order_.
 - SKU: string
 - Name: string
 - Description: string
+- Price: number
 - ImageUrl: string
 - (rel: many): Orders (through _product orders_)
 

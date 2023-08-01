@@ -28,6 +28,9 @@ const products: FastifyPluginAsync = async fastify => {
           order: customerId !== undefined
             ? { customerId }
             : undefined
+        },
+        orderBy: {
+          orderDate: "asc"
         }
       });
     }

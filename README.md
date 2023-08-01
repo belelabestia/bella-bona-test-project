@@ -30,7 +30,7 @@ A _customer_ makes _orders_ of _products_.
 
 ### Product
 
-**This entity won't be mapped in the project.**
+> **This entity won't be mapped in the project. See [here](#clarification-patch).**
 
 I'm assuming there's a _product catalogue_ from where the _customer_ can pick the _products_ to order;  
 therefore a _product_ can be added to more than one _order_.
@@ -50,6 +50,8 @@ therefore a _product_ can be added to more than one _order_.
 > I'm assuming there's an _image storage_ elsewhere, hence for the _product_ I'll just store an ImageUrl.
 
 ### (join entity) ProductOrder
+
+> **This entity will be handled by the _products_ endpoint in the project. See [here](#clarification-patch).**
 
 From what I'm seeing in the `data.json`, there _must_ be a _many to many_ relationship between _order_ and _product_.
 
@@ -145,3 +147,9 @@ I'm assuming that the goal of this view is not to list the _products_ of each of
 and to be able to update the status.
 
 **Path**: `/customer/:id/orders`
+
+## Clarification patch
+
+For the sake of this project, the entity _product order_ will be handled by the _products_ endpoint, while the concrete _product_ entity will not be handled at all.
+
+I'm aware that this could cause naming confusion, but at least at the data model level I want to leave a track that the relation graph has a broken arm towards the _product_.

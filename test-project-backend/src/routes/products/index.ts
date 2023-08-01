@@ -20,8 +20,9 @@ const products: FastifyPluginAsync = async fastify => {
 
       return fastify.prisma.productOrder.findMany({
         where: {
-          OR: (orderId !== undefined || customerId !== undefined)
-            ? [{ orderId }, { order: { customerId } }]
+          orderId,
+          order: customerId !== undefined
+            ? { customerId }
             : undefined
         }
       });

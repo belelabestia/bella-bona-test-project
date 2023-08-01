@@ -1,15 +1,26 @@
 import { NavLink } from "react-router-dom";
 import "./header.sass";
+import { useContext } from "react";
+import { CustomerContext } from "../../App";
 
-const Header = () => <header>
-  <nav>
-    <ul>
-      <li><NavLink to="/">🏠 Home</NavLink></li>
-      <li></li>
-      <li><NavLink to="customer/1/products">📦 Products</NavLink></li>
-      <li><NavLink to="customer/1/orders">🛒 Orders</NavLink></li>
-    </ul>
-  </nav>
-</header>;
+const Header = () => {
+  const { selectedCustomer } = useContext(CustomerContext);
+
+  return <header>
+    <nav>
+      <ul>
+        <li><NavLink to="/">🏠 Home (customer pick)</NavLink></li>
+        {
+          selectedCustomer !== null &&
+          <>
+            <li id="customer-name">{selectedCustomer.name}</li>
+            <li><NavLink to={`customer/${selectedCustomer.id}/products`}>📦 Products</NavLink></li>
+            <li><NavLink to={`customer/${selectedCustomer.id}/orders`}>🛒 Orders</NavLink></li>
+          </>
+        }
+      </ul>
+    </nav>
+  </header>;
+};
 
 export default Header;

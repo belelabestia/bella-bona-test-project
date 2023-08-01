@@ -1,0 +1,18 @@
+@use './_colors'
+@use 'sass:math'
+
+$border: 1px solid colors.$border
+$spacing: 16px
+$gap: math.div($spacing, 2)
+
+.panel
+  padding: $spacing
+
+.center
+  display: flex
+  justify-content: center
+  align-items: center
+
+.gap
+  display: flex
+  gap: $gap

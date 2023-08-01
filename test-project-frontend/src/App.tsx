@@ -1,21 +1,15 @@
 import React from 'react';
 import './App.sass';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import Header from './design/header/header';
+import Footer from './design/footer/footer';
 
-export const App = () => <>
-  <header>
-    <nav>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="customer/1/products">Products</Link></li>
-        <li><Link to="customer/1/orders">Orders</Link></li>
-      </ul>
-    </nav>
-  </header>
+export const App = () => <div className="app">
+  <Header />
   <main>
     <Outlet />
   </main>
-  <footer>Footer</footer>
-</>;
+  <Footer />
+</div>;
 
 export default App;

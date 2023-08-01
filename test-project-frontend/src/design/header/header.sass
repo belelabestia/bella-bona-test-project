@@ -1,0 +1,24 @@
+@use '../modules/_boxes'
+@use '../modules/_colors'
+@use '../modules/_sizes'
+
+header
+  @extend .panel, .bar, .center
+  justify-content: flex-end
+  border-bottom: boxes.$border
+
+  nav
+    @extend .full-width
+    display: flex
+
+  ul
+    @extend .container, .full-width
+    display: grid
+    grid-template-columns: auto 1fr auto auto
+    gap: boxes.$gap
+
+  li:has(a.active)
+    border-bottom: boxes.$border
+
+    & > a
+      color: colors.$highlight

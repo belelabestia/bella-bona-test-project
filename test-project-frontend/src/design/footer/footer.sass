@@ -1,0 +1,16 @@
+@use '../modules/_boxes'
+@use '../modules/_colors'
+@use '../modules/_sizes'
+
+footer
+  @extend .panel, .bar, .center
+  border-top: boxes.$border
+
+  ul
+    @extend .gap
+
+  li:has(a.active)
+    border-bottom: boxes.$border
+
+    & > a
+      color: colors.$highlight

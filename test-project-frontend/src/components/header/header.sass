@@ -8,11 +8,11 @@ header
   border-bottom: boxes.$border
 
   nav
-    @extend .full-width
+    @extend .full-width, .container
     display: flex
 
   ul
-    @extend .container, .full-width
+    @extend .full-width
     display: grid
     grid-template-columns: auto 1fr auto auto
     gap: boxes.$gap
@@ -25,3 +25,14 @@ header
 
   #customer-name
     @extend .center
+
+@media screen and (max-width: 600px)
+  header
+    height: min-content
+
+    ul
+      grid-template-columns: none
+      grid-auto-flow: row
+    
+    #customer-name
+      justify-content: flex-start

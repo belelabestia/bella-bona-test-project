@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./header.sass";
 import { useContext } from "react";
 import { AppContext } from "../../App";
@@ -9,9 +9,9 @@ const Header = () => {
   return <header>
     <nav>
       <ul>
-        <li><NavLink to="/home">🏠 Home (customer pick)</NavLink></li>
+        <li><NavLink to="/home">🏠 Home</NavLink></li>
         {selectedCustomer !== null && <>
-          <li id="customer-name">{selectedCustomer.name}</li>
+          <li id="customer-name"><Link to="/home">👤 {selectedCustomer.name}</Link></li>
           <li><NavLink to={`/customer/${selectedCustomer.id}/products`}>📦 Products</NavLink></li>
           <li><NavLink to={`/customer/${selectedCustomer.id}/orders`}>🛒 Orders</NavLink></li>
         </>}

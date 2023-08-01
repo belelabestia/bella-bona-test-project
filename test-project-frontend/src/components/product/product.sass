@@ -1,0 +1,15 @@
+@use '../../styles/_boxes'
+@use '../../styles/_colors'
+@use '../../styles/_sizes'
+
+.product
+  @extend .panel
+  display: grid
+  grid-template-columns: 1fr 1fr
+  grid-auto-rows: 1fr 1fr
+  gap: boxes.$spacing
+  border: boxes.$border
+  border-radius: sizes.$radius
+
+  p
+    padding: 0

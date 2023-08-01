@@ -25,3 +25,16 @@ a
 
 p
   padding: boxes.$spacing 0
+
+button
+  @extend .panel
+  border: none
+  font-size: inherit
+  font-family: inherit
+  cursor: pointer
+  border: boxes.$border
+  border-radius: sizes.$radius
+  transition: background-color 50ms linear
+
+  &:active
+    background-color: white

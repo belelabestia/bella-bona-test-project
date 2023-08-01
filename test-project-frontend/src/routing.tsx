@@ -3,21 +3,17 @@ import CustomerProducts, { productsLoader } from "./routes/customer-products";
 import CustomerOrders, { ordersLoader } from "./routes/customer-orders";
 import App from "./App";
 import NotFound from "./components/not-found/not-found";
-import Home from "./routes/home/home";
+import Home, { customersLoader } from "./routes/home/home";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    loader: () => fetch("/api/customer").then(res => res.json()),
     children: [
       {
-        path: "",
+        path: "home",
         element: <Home />,
-      },
-      {
-        path: "customer/:id",
-        element: <Home />,
+        loader: customersLoader
       },
       {
         path: "customer/:id/products",

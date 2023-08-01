@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { CustomerContext } from "../../App";
+import "./customer.sass";
+import { AppContext } from "../../App";
 
 export type CustomerModel = {
   id: number;
@@ -11,11 +12,8 @@ type Props = {
 }
 
 export const Customer = ({ customer }: Props) => {
-  const { selectCustomer } = useContext(CustomerContext);
-
-  return <div className="customer">
-    <button onClick={() => selectCustomer(customer)}>{customer.name}</button>
-  </div>;
+  const [, selectCustomer] = useContext(AppContext);
+  return <button onClick={() => selectCustomer(customer)}>{customer.name}</button>
 };
 
 export default Customer;

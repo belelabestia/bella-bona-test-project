@@ -1,35 +1,33 @@
-import React, { createContext, useState } from 'react';
+import React, { Dispatch, createContext, useEffect, useState } from 'react';
 import './App.sass';
-import { Outlet, useLoaderData } from 'react-router-dom';
+import { Outlet, useNavigate, useNavigation } from 'react-router-dom';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import { CustomerModel } from './components/customer/customer';
+import Loader from './components/loader/loader';
 
-type AppContextModel = {
-  customers: CustomerModel[];
-  selectedCustomer: CustomerModel | null;
-  selectCustomer: React.Dispatch<React.SetStateAction<CustomerModel | null>>;
-};
-
-export const CustomerContext = createContext<AppContextModel>({
-  customers: [],
-  selectedCustomer: null,
-  selectCustomer: () => { throw new Error("set a valid selectCustomer function"); }
-});
+export const AppContext = createContext(null! as [CustomerModel | null, Dispatch<CustomerModel | null>]);
 
 export const App = () => {
-  const customers = useLoaderData() as CustomerModel[];
   const [selectedCustomer, selectCustomer] = useState<CustomerModel | null>(null);
+  const { state } = useNavigation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/home");
+  }, [navigate])
 
   return <div id="app">
-    <CustomerContext.Provider value={{ customers, selectedCustomer, selectCustomer }}>
+    <AppContext.Provider value={[selectedCustomer, selectCustomer]}>
       <Header />
       <main>
-        <Outlet />
+        {state === "loading"
+          ? <Loader />
+          : <Outlet />}
       </main>
-    </CustomerContext.Provider>
+    </AppContext.Provider>
     <Footer />
-  </div >;
+  </div>;
 };
 
 export default App;

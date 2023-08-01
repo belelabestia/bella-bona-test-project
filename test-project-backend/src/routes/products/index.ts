@@ -1,25 +1,34 @@
 import { Order } from "@prisma/client";
 import { FastifyPluginAsync, FastifyRequest } from "fastify";
 
-type GetRequest = FastifyRequest<{ Querystring: { customerId?: number } }>;
+type GetRequest = FastifyRequest<{ Querystring: { orderId?: number, customerId?: number } }>;
 type PostRequest = FastifyRequest<{ Params: { id: number }, Body: Pick<Order, "status"> }>;
 
-const orders: FastifyPluginAsync = async fastify => {
+const products: FastifyPluginAsync = async fastify => {
   fastify.get(
     "/",
     {
       schema: {
         querystring: {
+          orderId: { type: "integer" },
           customerId: { type: "integer" }
         }
       }
     },
     (request: GetRequest) => {
-      const { customerId } = request.query;
-      return fastify.prisma.order.findMany({ where: { customerId } })
+      const { orderId, customerId } = request.query;
+
+      return fastify.prisma.productOrder.findMany({
+        where: {
+          OR: (orderId !== undefined || customerId !== undefined)
+            ? [{ orderId }, { order: { customerId } }]
+            : undefined
+        }
+      });
     }
   );
 
+  // TODO
   fastify.post(
     "/:id",
     {
@@ -44,4 +53,4 @@ const orders: FastifyPluginAsync = async fastify => {
   );
 };
 
-export default orders;
+export default products;

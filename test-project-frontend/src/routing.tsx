@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import CustomerProducts, { productsLoader } from "./routes/customer-products";
-import CustomerOrders, { ordersLoader } from "./routes/customer-orders";
+import CustomerProducts, { productsLoader } from "./routes/customer-products/customer-products";
+import CustomerOrders, { ordersLoader } from "./routes/customer-orders/customer-orders";
 import App from "./App";
 import NotFound from "./components/not-found/not-found";
 import Home, { customersLoader } from "./routes/home/home";

@@ -54,14 +54,14 @@ const products: FastifyPluginAsync = async fastify => {
       const { id } = request.params;
       const { name, quantity, status } = request.body;
 
-      const productOrder = await fastify.prisma.orderedProduct.findUnique({ where: { id } });
+      const orderedProduct = await fastify.prisma.orderedProduct.findUnique({ where: { id } });
 
-      if (productOrder === null) return reply.notFound();
+      if (orderedProduct === null) return reply.notFound();
 
       await fastify.prisma.orderedProduct.update({
         where: { id },
         data: { name, quantity, status }
-      })
+      });
     }
   );
 };

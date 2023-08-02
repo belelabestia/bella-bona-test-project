@@ -1,5 +1,13 @@
 # Bella & Bona - Test project
 
+## Dev setup
+
+1. In `test-project-database`, run `docker compose up -d`;
+1. In both `test-project-backend` and `test-project-frontend`, run `npm i`;
+1. In `test-project-backend`, run `npm run dev`;
+1. In `test-project-frontend`, run `npm start`;
+1. Up and running!
+
 ## Data model
 
 ### Customer
@@ -49,7 +57,7 @@ therefore a _product_ can be added to more than one _order_.
 
 > I'm assuming there's an _image storage_ elsewhere, hence for the _product_ I'll just store an ImageUrl.
 
-### (join entity) ProductOrder
+### (join entity) OrderedProduct
 
 > **This entity will be handled by the _products_ endpoint in the project. See [here](#clarification-patch).**
 
@@ -105,7 +113,7 @@ In this case, it looks rational to also provide a filter by _order_. Hence I'll 
 
 **Endpoint**: `/products?order=<order_id>&customer=<customer_id>`
 
-### ProductOrder
+### OrderedProduct
 
 #### Post/patch
 
@@ -115,7 +123,7 @@ From the use cases described in the spec I understand that this endpoint will no
 but rather to update the _product order_ data, such as quantity or status.  
 Hence I'm assuming this endpoint will not affect any actual _product_, but just the relationship payload between an _order_ and a _product_.
 
-**Endpoint**: `/product-order/:id`
+**Endpoint**: `/products/:id`
 
 > Could also be something like `/order/:order_id/product/:product_id`, but as I can see from `data.json`, the join entity has its own _id_, so I'm using it.
 

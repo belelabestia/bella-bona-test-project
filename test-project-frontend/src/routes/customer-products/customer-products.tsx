@@ -5,7 +5,7 @@ import { useMemo } from "react";
 import { groupProducts } from "./group-products";
 import ProductGroup from "../../components/product-group/product-group";
 
-export const productsLoader: LoaderFunction = ({ params }) => fetch(`/api/products?customerId=${params["id"]}`).then(res => res.json());
+export const fetchProducts: LoaderFunction = ({ params }) => fetch(`/api/products?customerId=${params["id"]}`).then(res => res.json());
 
 export const CustomerProducts = () => {
   const products = useLoaderData() as ProductModel[];

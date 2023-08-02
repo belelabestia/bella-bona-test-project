@@ -3,7 +3,7 @@ import Order from "../../components/order/order";
 import { OrderModel } from "../../types/order-model";
 import "./customer-orders.sass";
 
-export const ordersLoader: LoaderFunction = ({ params }) => fetch(`/api/orders?customerId=${params["id"]}`).then(res => res.json());
+export const fetchOrders: LoaderFunction = ({ params }) => fetch(`/api/orders?customerId=${params["id"]}`).then(res => res.json());
 
 export const CustomerOrders = () => {
   const orders = useLoaderData() as OrderModel[];

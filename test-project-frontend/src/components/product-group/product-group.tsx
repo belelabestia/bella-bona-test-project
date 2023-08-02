@@ -1,21 +1,32 @@
 import Product from "../product/product";
 import { ProductGroupModel } from "../../types/product-group-model";
 import "./product-group.sass";
+import { useMemo, useState } from "react";
 
 type Props = { group: ProductGroupModel; }
 
-export const ProductGroup = ({ group }: Props) => <div className="product-group">
-  <p>SKU: {group.sku}</p>
-  <p>Name: {group.name}</p>
-  <p>Quantity: {group.quantity}</p>
-  <div className="products">
-    <h3>Products</h3>
-    <ul>
-      {group.products.map(product => <li key={product.id}>
-        <Product product={product} />
-      </li>)}
-    </ul>
-  </div>
-</div>;
+export const ProductGroup = ({ group }: Props) => {
+  const [showProducts, setShowProducts] = useState(false);
+
+  return <div className="product-group">
+    <p>Name: {group.name}</p>
+    <p>SKU: {group.sku}</p>
+    <p>Quantity: {group.quantity}</p>
+    <p>Status: {group.status}</p>
+    {showProducts
+      ? <>
+        <button onClick={() => setShowProducts(false)}>Hide products</button>
+        <div className="products">
+          <h3>Products</h3>
+          <ul>
+            {group.products.map(product => <li key={product.id}>
+              <Product product={product} />
+            </li>)}
+          </ul>
+        </div>
+      </>
+      : <button onClick={() => setShowProducts(true)}>Edit products</button>}
+  </div>;
+};
 
 export default ProductGroup;

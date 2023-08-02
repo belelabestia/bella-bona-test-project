@@ -3,7 +3,7 @@ import { CustomerModel } from "../../types/customer-model";
 import "./home.sass";
 import { useLoaderData } from "react-router-dom";
 
-export const customersLoader = () => fetch("/api/customer").then(res => res.json());
+export const fetchCustomers = () => fetch("/api/customer").then(res => res.json());
 
 export const Home = () => {
   const customers = useLoaderData() as CustomerModel[];

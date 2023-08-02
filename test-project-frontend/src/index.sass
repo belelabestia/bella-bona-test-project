@@ -1,6 +1,7 @@
 @use './styles/_colors'
 @use './styles/_sizes'
 @use './styles/_boxes'
+@use 'sass:math'
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600;700&display=swap')
 
 *
@@ -38,3 +39,8 @@ button
 
   &:active
     background-color: white
+
+input, select
+  border: 1px solid colors.$border
+  padding: math.div(boxes.$spacing, 2)
+  border-radius: sizes.$radius

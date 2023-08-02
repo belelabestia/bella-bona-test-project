@@ -85,7 +85,7 @@ const seedOrders = () => prisma.order.createMany({
   ]
 });
 
-const seedProductOrders = () => prisma.productOrder.createMany({
+const seedOrderedProducts = () => prisma.orderedProduct.createMany({
   data: [
     {
       id: 1,
@@ -277,7 +277,7 @@ const main = async () => {
     await clear();
     await seedCustomers();
     await seedOrders();
-    await seedProductOrders();
+    await seedOrderedProducts();
 
     console.log("seeding complete!");
   } catch (e) {

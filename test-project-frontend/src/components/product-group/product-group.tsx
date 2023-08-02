@@ -15,7 +15,7 @@ export const ProductGroup = ({ group }: Props) => {
     <p>Status: {group.status}</p>
     {showProducts
       ? <>
-        <button onClick={() => setShowProducts(false)}>Hide products</button>
+        <button onClick={() => setShowProducts(false)}>Hide ordered products</button>
         <div className="products">
           <h3>Products</h3>
           <ul>
@@ -25,7 +25,7 @@ export const ProductGroup = ({ group }: Props) => {
           </ul>
         </div>
       </>
-      : <button onClick={() => setShowProducts(true)}>Edit products</button>}
+      : <button onClick={() => setShowProducts(true)}>Edit ordered products</button>}
   </div>;
 };
 

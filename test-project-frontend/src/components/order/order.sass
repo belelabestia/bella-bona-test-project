@@ -14,7 +14,7 @@
   button
     grid-column: 1 / span 2
     background-color: white
-  
+
   button:active
     background-color: colors.$background
 
@@ -22,3 +22,16 @@
     @extend .gap
     align-items: center
     padding: 0
+
+  .ordered-products
+    @extend .gap
+    flex-direction: column
+    grid-column: 1 / span 2
+
+    & > div
+      @extend .panel
+      background-color: white
+      border-radius: sizes.$radius
+      border: boxes.$border
+      display: grid
+      grid-template-columns: 1fr 1fr

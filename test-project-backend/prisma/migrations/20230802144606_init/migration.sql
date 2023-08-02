@@ -20,7 +20,7 @@ CREATE TABLE "Order" (
 );
 
 -- CreateTable
-CREATE TABLE "ProductOrder" (
+CREATE TABLE "OrderedProduct" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "quantity" INTEGER NOT NULL,
@@ -29,11 +29,11 @@ CREATE TABLE "ProductOrder" (
     "orderId" INTEGER NOT NULL,
     "orderDate" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "ProductOrder_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "OrderedProduct_pkey" PRIMARY KEY ("id")
 );
 
 -- AddForeignKey
 ALTER TABLE "Order" ADD CONSTRAINT "Order_customerId_fkey" FOREIGN KEY ("customerId") REFERENCES "Customer"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ProductOrder" ADD CONSTRAINT "ProductOrder_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "OrderedProduct" ADD CONSTRAINT "OrderedProduct_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

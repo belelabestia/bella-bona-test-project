@@ -5,4 +5,9 @@ export type OrderModel = {
   date: string;
   status: Status;
   customerId: number;
+  orderedProducts: {
+    id: number;
+    name: string;
+    status: Status;
+  }[];
 };

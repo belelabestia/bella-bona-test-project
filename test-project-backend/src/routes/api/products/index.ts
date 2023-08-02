@@ -1,11 +1,11 @@
-import { ProductOrder } from "@prisma/client";
+import { OrderedProduct } from "@prisma/client";
 import { FastifyPluginAsync, FastifyRequest } from "fastify";
 
 type GetRequest = FastifyRequest<{ Querystring: { orderId?: number, customerId?: number } }>;
 
 type PostRequest = FastifyRequest<{
   Params: { id: number },
-  Body: Pick<ProductOrder, "name" | "quantity" | "status">
+  Body: Pick<OrderedProduct, "name" | "quantity" | "status">
 }>;
 
 const products: FastifyPluginAsync = async fastify => {
@@ -22,7 +22,7 @@ const products: FastifyPluginAsync = async fastify => {
     (request: GetRequest) => {
       const { orderId, customerId } = request.query;
 
-      return fastify.prisma.productOrder.findMany({
+      return fastify.prisma.orderedProduct.findMany({
         where: {
           orderId,
           order: customerId !== undefined
@@ -54,11 +54,11 @@ const products: FastifyPluginAsync = async fastify => {
       const { id } = request.params;
       const { name, quantity, status } = request.body;
 
-      const productOrder = await fastify.prisma.productOrder.findUnique({ where: { id } });
+      const productOrder = await fastify.prisma.orderedProduct.findUnique({ where: { id } });
 
       if (productOrder === null) return reply.notFound();
 
-      await fastify.prisma.productOrder.update({
+      await fastify.prisma.orderedProduct.update({
         where: { id },
         data: { name, quantity, status }
       })

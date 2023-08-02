@@ -23,7 +23,16 @@ const orders: FastifyPluginAsync = async fastify => {
 
       return fastify.prisma.order.findMany({
         where: { customerId },
-        orderBy: { date: "asc" }
+        orderBy: { date: "asc" },
+        include: {
+          orderedProducts: {
+            select: {
+              id: true,
+              name: true,
+              status: true
+            }
+          }
+        }
       });
     }
   );
@@ -52,7 +61,7 @@ const orders: FastifyPluginAsync = async fastify => {
         where: { id },
         data: {
           status,
-          productOrder: {
+          orderedProducts: {
             updateMany: {
               where: { orderId: id },
               data: { status }

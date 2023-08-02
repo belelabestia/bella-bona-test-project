@@ -30,6 +30,13 @@ export const Order = ({ order }: Props) => {
         <option value="done">done</option>
       </select>
     </p>
+    <div className="ordered-products">
+      <h3>Products</h3>
+      {order.orderedProducts.map(product => <div key={product.id}>
+        <p>Name: {product.name}</p>
+        <p>Status: {product.status}</p>
+      </div>)}
+    </div>
     {edited && <button type="submit">Save</button>}
   </Form>;
 };

@@ -1,4 +1,4 @@
-import { OrderedProduct } from "@prisma/client";
+import { OrderedProduct, Status } from "@prisma/client";
 import { FastifyPluginAsync, FastifyRequest } from "fastify";
 
 type GetRequest = FastifyRequest<{ Querystring: { orderId?: number, customerId?: number } }>;
@@ -54,16 +54,42 @@ const products: FastifyPluginAsync = async fastify => {
       const { id } = request.params;
       const { name, quantity, status } = request.body;
 
-      const orderedProduct = await fastify.prisma.orderedProduct.findUnique({ where: { id } });
+      const orderedProduct = await fastify.prisma.orderedProduct.findUnique({
+        where: { id },
+        include: {
+          order: {
+            include: {
+              orderedProducts: {
+                where: { id: { not: { equals: id } } },
+                select: { status: true }
+              }
+            }
+          }
+        }
+      });
 
       if (orderedProduct === null) return reply.notFound();
 
+      const orderStatus = orderedProduct.order.orderedProducts
+        .map(orderedProduct => orderedProduct.status)
+        .concat(status)
+        .reduce(reduceStatus, "done");
+
       await fastify.prisma.orderedProduct.update({
         where: { id },
-        data: { name, quantity, status }
+        data: {
+          name,
+          quantity,
+          status,
+          order: {
+            update: { data: { status: orderStatus } }
+          }
+        }
       });
     }
   );
 };
+
+const reduceStatus = (final: Status, next: Status): Status => final !== next ? "processing" : final;
 
 export default products;

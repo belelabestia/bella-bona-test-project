@@ -4,7 +4,7 @@
 
 1. In `test-project-database`, run `docker compose up -d`;
 1. In both `test-project-backend` and `test-project-frontend`, run `npm i`;
-1. In `test-project-backend`, run `npm run dev`;
+1. In `test-project-backend`, run `npx prisma migrate reset`, then `npm run dev`;
 1. In `test-project-frontend`, run `npm start`;
 1. Up and running!
 

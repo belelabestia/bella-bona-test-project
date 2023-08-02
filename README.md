@@ -8,6 +8,13 @@
 1. In `test-project-frontend`, run `npm start`;
 1. Up and running!
 
+### Test instructions
+
+1. Run application in [dev](#dev-setup);
+1. Make sure the database is fresh after seeding;
+1. In `test-project-e2e` run `npm i`, then `npx playwright test --ui`;
+1. Run any test!
+
 ## Data model
 
 ### Customer

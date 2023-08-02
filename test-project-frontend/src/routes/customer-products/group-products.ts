@@ -35,6 +35,6 @@ const makeGroup = (sku: number, products: ProductModel[]): ProductGroupModel => 
   };
 };
 
+export const reduceStatus = (final: Status, next: Status) => final !== next ? "processing" : final;
 const distinct = <T>(value: T, index: number, array: T[]) => array.indexOf(value) === index;
 const sum = (sum: number, x: number): number => sum + x;
-const reduceStatus = (final: Status, next: Status) => final !== next ? "processing" : final;

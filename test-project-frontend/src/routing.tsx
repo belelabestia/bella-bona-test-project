@@ -5,6 +5,7 @@ import App from "./app";
 import NotFound from "./components/not-found/not-found";
 import Home, { fetchCustomers } from "./routes/home/home";
 import { saveProduct } from "./components/product/product";
+import { saveOrder } from "./components/order/order";
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +26,8 @@ export const router = createBrowserRouter([
       {
         path: "customer/:id/orders",
         element: <CustomerOrders />,
-        loader: fetchOrders
+        loader: fetchOrders,
+        action: saveOrder
       },
       {
         path: "*",

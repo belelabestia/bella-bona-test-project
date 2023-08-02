@@ -2,23 +2,17 @@ import { useState } from "react";
 import { ProductModel } from "../../types/product-model";
 import { ActionFunction, Form, redirect, useParams } from "react-router-dom";
 import "./product.sass";
+import { post } from "../../utils/post";
 
 type Props = { product: ProductModel; };
 
 export const saveProduct: ActionFunction = async ({ request, params }) => {
   const formData = await request.formData();
   const { id: productId, ...updates } = Object.fromEntries(formData);
+  const { id: customerId } = params;
 
-  await fetch(`/api/products/${productId}`, {
-    method: "POST",
-    body: JSON.stringify(updates),
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  });
-
-  return redirect(`/customer/${params["id"]}/products`);
+  await fetch(`/api/products/${productId}`, post(updates));
+  return redirect(`/customer/${customerId}/products`);
 };
 
 export const Product = ({ product }: Props) => {

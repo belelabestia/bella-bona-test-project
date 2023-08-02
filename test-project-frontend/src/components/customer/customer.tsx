@@ -1,15 +1,9 @@
 import { useContext } from "react";
 import "./customer.sass";
-import { AppContext } from "../../App";
+import { AppContext } from "../../app";
+import { CustomerModel } from "../../types/customer-model";
 
-export type CustomerModel = {
-  id: number;
-  name: string;
-};
-
-type Props = {
-  customer: CustomerModel;
-}
+type Props = { customer: CustomerModel; }
 
 export const Customer = ({ customer }: Props) => {
   const [, selectCustomer] = useContext(AppContext);

@@ -1,15 +1,7 @@
+import { OrderModel } from "../../types/order-model";
 import "./order.sass";
 
-export type OrderModel = {
-  id: number;
-  date: string;
-  status: "processing" | "done";
-  customerId: number;
-};
-
-type Props = {
-  order: OrderModel;
-}
+type Props = { order: OrderModel; }
 
 export const Order = ({ order }: Props) => <div className="order">
   <p>Date: {new Date(order.date).toLocaleDateString()}</p>

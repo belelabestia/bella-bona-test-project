@@ -1,4 +1,5 @@
-import Customer, { CustomerModel } from "../../components/customer/customer";
+import Customer from "../../components/customer/customer";
+import { CustomerModel } from "../../types/customer-model";
 import "./home.sass";
 import { useLoaderData } from "react-router-dom";
 

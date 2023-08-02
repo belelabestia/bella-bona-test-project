@@ -1,5 +1,6 @@
 import { LoaderFunction, useLoaderData } from "react-router-dom";
-import Order, { OrderModel } from "../../components/order/order";
+import Order from "../../components/order/order";
+import { OrderModel } from "../../types/order-model";
 import "./customer-orders.sass";
 
 export const ordersLoader: LoaderFunction = ({ params }) => fetch(`/api/orders?customerId=${params["id"]}`).then(res => res.json());

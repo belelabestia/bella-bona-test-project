@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import "./header.sass";
 import { useContext } from "react";
-import { AppContext } from "../../App";
+import { AppContext } from "../../app";
 
 const Header = () => {
   const [selectedCustomer] = useContext(AppContext);

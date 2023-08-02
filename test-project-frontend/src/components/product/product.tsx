@@ -1,18 +1,7 @@
+import { ProductModel } from "../../types/product-model";
 import "./product.sass";
 
-export type ProductModel = {
-  id: number;
-  name: string;
-  quantity: number;
-  status: "processing" | "done";
-  productId: number;
-  orderId: number;
-  orderDate: string;
-};
-
-type Props = {
-  product: ProductModel;
-}
+type Props = { product: ProductModel; };
 
 export const Product = ({ product }: Props) => <div className="product">
   <p>Name: {product.name}</p>
